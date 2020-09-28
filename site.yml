@@ -1,9 +1,0 @@
----
-- name: setting up monitoring stack
-  hosts:
-    prometheus
-    grafana
-    
-  roles:
-    - prometheus
-    - grafana
