@@ -3,4 +3,4 @@
   hosts:
     grafana  
   roles:
-    - grafans
+    - grafana
