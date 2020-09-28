@@ -1,0 +1,6 @@
+---
+- name: setting up monitoring stack
+  hosts:
+    prometheus  
+  roles:
+    - prometheus
