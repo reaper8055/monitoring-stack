@@ -6,6 +6,7 @@
 - name: Grafana apt sources
   apt_repository:
     repo: deb https://packages.grafana.com/oss/deb stable main
+  become: yes
 
 - name: update and upgrade  
   apt: 
