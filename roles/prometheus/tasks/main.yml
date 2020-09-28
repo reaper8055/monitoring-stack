@@ -103,10 +103,6 @@
     dest: /etc/systemd/system/prometheus.service
   become: yes
 
-- name: reload daemon
-  command: systemctl daemon-reload
-  become: yes
-
 - name: copy prometheus config and set permissions
   template:
     src: prometheus-config.jinja2
@@ -120,8 +116,11 @@
     group: prometheus
     mode: 0550
   become: yes
-  notify:
-    - "enable and start prometheus"
 
-- name: Flush handlers
-  meta: flush_handlers
+- name: enable and start prometheus
+  systemd:
+    daemon_reload: yes
+    name: prometheus
+    enabled: yes
+    started: yes
+  become: yes

@@ -1,6 +1,5 @@
 ---
 - name: setting up monitoring stack
-  hosts:
-    grafana  
+  hosts: grafana
   roles:
     - grafana

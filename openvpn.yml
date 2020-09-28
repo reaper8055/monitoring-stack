@@ -1,5 +1,7 @@
 ---
 - name: setting up monitoring stack
-  hosts: prometheus
-  roles:
+  hosts:
     - prometheus
+    - alertmanager
+  roles:
+    - openvpn

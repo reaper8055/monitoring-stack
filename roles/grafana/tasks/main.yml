@@ -21,8 +21,15 @@
     pkg:
       - grafana
   become: yes
-  notify:
-    - "enable and start grafana"
 
-- name: Flush handlers
-  meta: flush_handlers
+- name: enable grafana
+  systemd:
+    name: grafana
+    enabled: yes
+  become: yes
+
+- name: start grafana
+  systemd:
+    name: grafana
+    state: started
+  become: yes

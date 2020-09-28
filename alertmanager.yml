@@ -1,5 +1,5 @@
 ---
 - name: setting up monitoring stack
-  hosts: prometheus
+  hosts: alertmanager
   roles:
-    - prometheus
+    - alertmanager
