@@ -1,0 +1,20 @@
+---
+- name: Grafana GPG key
+  shell: wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+  become: yes
+
+- name: Grafana to apt sources
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+
+- name: enable grafana service
+  service:
+    name: grafana
+    enabled: yes
+  become: yes
+
+- name: restart grafana service
+  service:
+    name: grafana
+    state: restarted
+  become: yes
