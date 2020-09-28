@@ -5,6 +5,6 @@
     grafana
     alertmanager
 
-  user: root
+  user: prometheus
   roles:
     - prometheus
