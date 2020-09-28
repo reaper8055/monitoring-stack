@@ -22,5 +22,5 @@
       - grafana
   become: yes
   notify: 
-    - enable grafana service
-    - restart grafana service
+    - enable grafana
+    - restart grafana
