@@ -31,4 +31,4 @@ scrape_configs:
     metrics_path: /metrics
     scrape_interval: 5s
     static_configs:
-    - targets: [ {{ prometheus_targets }} ]
+    - targets: {{ prometheus_targets }}
