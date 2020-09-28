@@ -1,13 +1,13 @@
---- 
-- name: update and upgrade  
-  apt: 
-    update_cache: yes 
-    state: latest 
+---
+- name: update and upgrade
+  apt:
+    update_cache: yes
+    state: latest
     upgrade: dist
   become: yes
-  
+
 - name: install packages
-  apt: 
+  apt:
     pkg:
       - unzip
   become: yes
@@ -17,7 +17,7 @@
     path: /etc/prometheus
     state: directory
   become: yes
-  
+
 - name: create /var/lib/prometheus directory
   file:
     path: /var/lib/prometheus
@@ -102,7 +102,7 @@
     src: prometheus.service
     dest: /etc/systemd/system/prometheus.service
   become: yes
-  
+
 - name: reload daemon
   systemd:
     state: restarted
@@ -110,17 +110,20 @@
   become: yes
 
 - name: copy prometheus config and set permissions
-  template: 
-    src: prometheus-config.jinja2 
+  template:
+    src: prometheus-config.jinja2
     dest: /etc/prometheus/prometheus.yml
   become: yes
 
 - name: change permission for /etc/prometheus.yml and restart service
-  file: 
+  file:
     dest: /etc/prometheus/prometheus.yml
     owner: prometheus
     group: prometheus
     mode: 0550
   become: yes
-  notify: 
+  notify:
     - "enable and start prometheus"
+
+- name: Flush handlers
+  meta: flush_handlers
