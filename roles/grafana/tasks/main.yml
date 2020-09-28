@@ -23,4 +23,5 @@
   become: yes
   notify: 
     - enable grafana
-    - restart grafana
+    - start grafana
+    - reload grafana

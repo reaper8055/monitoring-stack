@@ -104,7 +104,9 @@
   become: yes
   
 - name: reload daemon
-  command: systemctl daemon-reload
+  systemd:
+    state: restarted
+    daemon_reload: yes
   become: yes
 
 - name: copy prometheus config and set permissions
@@ -120,4 +122,7 @@
     group: prometheus
     mode: 0550
   become: yes
-  notify: prometheus-service
+  notify: 
+    - enable prometheus
+    - start prometheus
+    - reload prometheus

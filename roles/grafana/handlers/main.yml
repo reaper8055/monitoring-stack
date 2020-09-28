@@ -1,12 +1,18 @@
 ---
 - name: enable grafana
-  service:
+  systemd:
     name: grafana
     enabled: yes
   become: yes
 
-- name: restart grafana
-  service:
+- name: start grafana
+  systemd: 
     name: grafana
-    state: restarted
+    state: started
+  become: yes
+
+- name: reload grafana
+  systemd:
+    name: grafana
+    state: reloaded
   become: yes

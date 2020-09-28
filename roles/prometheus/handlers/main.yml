@@ -1,8 +1,19 @@
 ---
 # enable and restart prometheus service
-- name: prometheus-service
-  service:
+- name: enable prometheus
+  systemd:
     name: prometheus
     enabled: yes
-    state: restarted
+  become: yes
+
+- name: start prometheus
+  systemd:
+    name: prometheus
+    state: started
+  become: yes
+
+- name: reload prometheus
+  systemd:
+    name: prometheus
+    state: reloaded
   become: yes
