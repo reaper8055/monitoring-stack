@@ -21,7 +21,5 @@
     pkg:
       - grafana
   become: yes
-  notify: 
-    - enable grafana
-    - start grafana
-    - reload grafana
+  notify:
+    - "enable and start grafana"

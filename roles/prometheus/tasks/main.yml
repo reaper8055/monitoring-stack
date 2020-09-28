@@ -123,6 +123,4 @@
     mode: 0550
   become: yes
   notify: 
-    - enable prometheus
-    - start prometheus
-    - reload prometheus
+    - "enable and start prometheus"
