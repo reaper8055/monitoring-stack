@@ -19,9 +19,6 @@
     pkg:
       - grafana
   become: yes
-
-- name: enable grafana service
-  notify: enable grafana service
-
-- name: start grafana service
-  notify: restart grafana service
+  notify: 
+    - enable grafana service
+    - restart grafana service
