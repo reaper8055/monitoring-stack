@@ -1,6 +1,7 @@
 --- 
 - name: Grafana GPG key
-  shell: wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
   become: yes
 
 - name: Grafana apt sources
