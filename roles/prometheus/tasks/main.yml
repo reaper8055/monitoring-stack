@@ -97,29 +97,27 @@
     mode: 0770
   become: yes
 
+- name: copy prometheus.service file
+  template:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+  become: yes
+  
+- name: reload daemon
+  command: systemctl daemon-reload
+  become: yes
+
 - name: copy prometheus config and set permissions
   template: 
     src: prometheus-config.jinja2 
     dest: /etc/prometheus/prometheus.yml
   become: yes
 
-- name: change permission
+- name: change permission for /etc/prometheus.yml and restart service
   file: 
     dest: /etc/prometheus/prometheus.yml
     owner: prometheus
     group: prometheus
     mode: 0550
   become: yes
-
-- name: copy prometheus.service file
-  template:
-    src: prometheus.service
-    dest: /etc/systemd/system/prometheus.service
-  become: yes
-
-- name: reload daemon
-  command: systemctl daemon-reload
-  become: yes
-
-- name: restart prometheus service
   notify: prometheus-service

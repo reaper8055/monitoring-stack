@@ -5,3 +5,4 @@
     name: prometheus
     enabled: yes
     state: restarted
+  become: yes
