@@ -120,3 +120,6 @@
 - name: reload daemon
   command: systemctl daemon-reload
   become: yes
+
+- name: restart prometheus service
+  notify: prometheus-service
