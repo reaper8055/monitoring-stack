@@ -1,9 +1,11 @@
 --- 
-- name: adding Grafana GPG key
-  notify: Grafana GPG key
+- name: Grafana GPG key
+  shell: wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+  become: yes
 
-- name: adding Grafana to apt sources
-  notify: Grafana to apt sources
+- name: Grafana apt sources
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
 
 - name: update and upgrade  
   apt: 
