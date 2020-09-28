@@ -1,0 +1,10 @@
+---
+- name: setting monitoring stack
+  hosts:
+    prometheus
+    grafana
+    alertmanager
+
+  user: root
+  roles:
+    - monitoring-stack

@@ -1,0 +1,90 @@
+--- 
+- hosts: prometheus
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+  - name: update and upgrade  
+    apt: update_cache=yes state=latest upgrade=yes
+  
+  - name: reboot after upgrade / update
+    reboot:
+      test_command: uptime
+  
+  - name: install packages
+    apt: name={{ item }} state=present
+    with_items:
+      - unzip
+
+  - name: create /etc/prometheus directory
+    file:
+      path: /etc/prometheus
+      state: directory
+  
+  - name: create /var/lib/prometheus directory
+    file:
+      path: /var/lib/prometheus
+      state: directory
+  
+  - name: change owner and group for /etc/prometheus
+    file:
+      path: /etc/prometheus
+      owner: prometheus
+      group: prometheus
+  
+  - name: change owner and group for /var/lib/prometheus
+    file:
+      path: /var/lib/prometheus
+      owner: prometheus
+      group: prometheus
+  
+  - name: download prometheus
+    get_url:
+      url: https://github.com/prometheus/prometheus/releases/download/v2.21.0/prometheus-2.21.0.linux-amd64.tar.gz
+      dest: /home/prometheus/prometheus-2.21.0.linux-amd64.tar.gz
+      checksum: sha256:f1f2eeabbf7822572dce67565dc96ffaa2dd1897dd1d844562552b11123f151a
+  
+  - name: extract prometheus
+    unarchive:
+      src: /home/prometheus/prometheus-2.21.0.linux-amd64.tar.gz
+      dest: /home/prometheus/prometheus-2.21.0.linux-amd64
+
+  - name: copy prometheus to /usr/local/bin
+    copy:
+      src: /home/prometheus/prometheus-2.21.0.linux-amd64/prometheus
+      dest: /usr/local/bin
+      owner: prometheus
+      group: prometheus
+
+  - name: copy promtool to /usr/local/bin
+    copy:
+      src: /home/prometheus/prometheus-2.21.0.linux-amd64/promtool
+      dest: /usr/local/bin
+      owner: prometheus
+      group: prometheus
+  
+  - name: copy prometheus-2.21.0.linux-amd64/consoles to /etc/prometheus
+    command: cp -r /home/prometheus/prometheus-2.21.0.linux-amd64/consoles /etc/prometheus
+  
+  - name: copy prometheus-2.21.0.linux-amd64/console_libraries /etc/prometheus
+    command: cp -r /home/prometheus/prometheus-2.21.0.linux-amd64/consoles_libraries /etc/prometheus
+
+  - name: change owner and group for /etc/prometheus/consoles
+    command: chown -R prometheus:prometheus /etc/prometheus/consoles
+  
+  - name: change owner and group for /etc/prometheus/console_libraries
+    command: chown -R prometheus:prometheus /etc/prometheus/console_libraries
+
+  - name: copy prometheus config and set permissions
+    template: src=prometheus-config.jinja2 dest=/etc/prometheus/prometheus.yml
+    command: chown prometheus:prometheus /etc/prometheus/prometheus.yml
+  
+  - name: copy prometheus.service file
+    file: src=prometheus.service dest=/etc/systemd/system/prometheus.service
+
+  - name: reload daemon
+    command: systemctl daemon-reload
+  
+  - name: enable and restart prometheus.service
+    notify: prometheus.service

@@ -1,0 +1,7 @@
+---
+# enable and restart prometheus service
+- name: prometheus.service
+  service:
+    name: prometheus
+    enabled: yes
+    state: restarted

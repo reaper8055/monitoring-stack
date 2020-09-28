@@ -1,0 +1,6 @@
+[prometheus]
+10.0.0.117
+
+[grafana]
+
+[alertmanager]
