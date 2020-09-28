@@ -1,5 +1,6 @@
+# ansible-playbook -i hosts/host site.yml -kK
 [prometheus]
-10.0.0.117 ansible_connection=ssh ansible_user=prometheus ansible_ssh_pass=prometheus
+10.0.0.117 ansible_connection=ssh ansible_user=prometheus
 
 [grafana]
 

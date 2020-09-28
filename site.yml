@@ -2,7 +2,8 @@
 - name: setting up monitoring stack
   hosts:
     prometheus
-
-  remote_user: prometheus
+    grafana
+    
   roles:
     - prometheus
+    - grafana
