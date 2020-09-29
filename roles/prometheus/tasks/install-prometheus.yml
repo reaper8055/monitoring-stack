@@ -32,7 +32,7 @@
 - name: create /var/lib/prometheus directory
   become: true
   file:
-    path: { { prometheus_db_dir } }
+    path: "{{ prometheus_db_dir }}"
     state: directory
     owner: prometheus
     group: prometheus
