@@ -94,6 +94,7 @@
     - not prometheus_skip_install
 
 - name: copy locally distributed prometheus and promtool binaries
+  become: true
   copy:
     src: "{{ prometheus_binary_local_dir }}/{{ item }}"
     dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
@@ -121,6 +122,7 @@
     - "enable and start prometheus"
 
 - name: Install SELinux dependencies
+  become: true
   package:
     name: "{{ item }}"
     state: present
