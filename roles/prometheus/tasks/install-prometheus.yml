@@ -44,12 +44,12 @@
       get_url:
         url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}.tar.gz"
         dest: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}.tar.gz"
-        checksum: "sha256:{{ __prometheus_checksum }}"
+        checksum: "sha256:{{ prometheus_checksum }}"
       register: _download_archive
       until: _download_archive is succeeded
       retries: 5
       delay: 2
-      # run_once: true # <-- this cannot be set due to multi-arch support
+      run_once: true
       delegate_to: localhost
       check_mode: false
 
