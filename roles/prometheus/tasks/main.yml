@@ -1,5 +1,3 @@
 ---
-- include:
-    - update-system.yml
-- include:
-    - install-prometheus.yml
+- include: update-system.yml
+- include: install-prometheus.yml
