@@ -110,6 +110,7 @@
     - "enable and start prometheus"
 
 - name: create systemd service unit
+  become: true
   template:
     src: prometheus.service.j2
     dest: /etc/systemd/system/prometheus.service
