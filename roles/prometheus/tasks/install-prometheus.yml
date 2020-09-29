@@ -65,7 +65,6 @@
     - name: copy official prometheus and promtool binaries
       become: true
       copy:
-        remote_src: yes
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}"
         dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
         mode: 0755
@@ -80,7 +79,6 @@
     - name: copy official console templates
       become: true
       copy:
-        remote_src: yes
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}/"
         dest: "{{ prometheus_config_dir }}/{{ item }}/"
         mode: 0644
@@ -100,8 +98,8 @@
     src: "{{ prometheus_binary_local_dir }}/{{ item }}"
     dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
     mode: 0755
-    owner: root
-    group: root
+    owner: prometheus
+    group: prometheus
   with_items:
     - prometheus
     - promtool
@@ -115,8 +113,8 @@
   template:
     src: prometheus.service.j2
     dest: /etc/systemd/system/prometheus.service
-    owner: root
-    group: root
+    owner: prometheus
+    group: prometheus
     mode: 0644
   notify:
     - restart prometheus
