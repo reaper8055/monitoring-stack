@@ -1,2 +1,2 @@
 ---
-- import_task: update-system.yml
+- include: update-system.yml
