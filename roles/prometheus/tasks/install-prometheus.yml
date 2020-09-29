@@ -74,7 +74,7 @@
         - prometheus
         - promtool
       notify:
-        - restart prometheus
+        - "enable and start prometheus"
 
     - name: copy official console templates
       become: true
@@ -88,7 +88,7 @@
         - console_libraries
         - consoles
       notify:
-        - restart prometheus
+        - "enable and start prometheus"
   when:
     - prometheus_binary_local_dir | length == 0
     - not prometheus_skip_install
@@ -107,7 +107,7 @@
     - prometheus_binary_local_dir | length > 0
     - not prometheus_skip_install
   notify:
-    - restart prometheus
+    - "enable and start prometheus"
 
 - name: create systemd service unit
   template:
@@ -117,7 +117,7 @@
     group: prometheus
     mode: 0644
   notify:
-    - restart prometheus
+    - "enable and start prometheus"
 
 - name: Install SELinux dependencies
   package:
