@@ -1,2 +1,2 @@
 ---
-- import_playbook: update-system.yml
+- import_task: update-system.yml
