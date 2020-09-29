@@ -1,6 +1,6 @@
 ---
 prometheus_version: 2.21.0
-prometheus_checksum: "919165c5ab48d5e9766996b34e7fa0fd9a7f1bd4a405a9991856e7ea84b4c684"
+prometheus_checksum: 919165c5ab48d5e9766996b34e7fa0fd9a7f1bd4a405a9991856e7ea84b4c684
 prometheus_binary_local_dir: ""
 prometheus_skip_install: false
 
