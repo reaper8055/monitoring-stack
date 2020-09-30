@@ -4,16 +4,3 @@ go_arch_map:
 
 go_arch: "{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}"
 _prometheus_binary_install_dir: "/usr/local/bin"
-
-prometheus_targets:
-  {
-    fmg-dc1: "192.168.23.12:9182",
-    fmg-v-dc2: "192.168.23.31:9182",
-    fmt-v-fnp: "192.168.23.11:9182",
-    fmt-v-app: "192.168.23.48:9182",
-    fmt-v-app2: "192.168.23.33:9182",
-    fmt-r-sql: "192.168.23.49:9182",
-    fmt-v-ts1: "192.168.23.50:9182",
-    fmt-archive: "192.168.23.16:9182",
-    milton-pc: "10.0.0.249:9182",
-  }
