@@ -11,4 +11,4 @@
     mode: 0660
     validate: "{{ _prometheus_binary_install_dir }}/promtool check config %s"
   notify:
-    - reload prometheus
+    - "enable and start prometheus"
