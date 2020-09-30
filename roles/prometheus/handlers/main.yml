@@ -19,5 +19,5 @@
   listen: "enable and start prometheus"
   systemd:
     name: prometheus
-    state: reloaded
+    state: restarted
   become: yes
