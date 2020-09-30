@@ -8,7 +8,7 @@
     force: true
     owner: prometheus
     group: prometheus
-    mode: 0640
+    mode: 0660
     validate: "{{ _prometheus_binary_install_dir }}/promtool check config %s"
   notify:
     - reload prometheus

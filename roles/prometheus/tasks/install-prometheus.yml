@@ -36,7 +36,7 @@
     state: directory
     owner: prometheus
     group: prometheus
-    mode: 0550
+    mode: 0660
 
 - block:
     - name: download prometheus binary to local folder
