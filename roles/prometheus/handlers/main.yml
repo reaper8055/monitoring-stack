@@ -3,6 +3,7 @@
 - name: enable prometheus
   listen: "enable and start prometheus"
   systemd:
+    daemon_reload: yes
     name: prometheus
     enabled: yes
   become: yes
