@@ -67,7 +67,7 @@
       copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}"
         dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
-        mode: 0755
+        mode: 0770
         owner: prometheus
         group: prometheus
       with_items:
@@ -81,7 +81,7 @@
       copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}/"
         dest: "{{ prometheus_config_dir }}/{{ item }}/"
-        mode: 0644
+        mode: 0660
         owner: prometheus
         group: prometheus
       with_items:
@@ -117,7 +117,7 @@
     dest: /etc/systemd/system/prometheus.service
     owner: prometheus
     group: prometheus
-    mode: 0644
+    mode: 0660
   notify:
     - "enable and start prometheus"
 
