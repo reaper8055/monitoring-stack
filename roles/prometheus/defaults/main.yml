@@ -2,10 +2,11 @@
 prometheus_version: 2.21.0
 __prometheus_checksum: "f1f2eeabbf7822572dce67565dc96ffaa2dd1897dd1d844562552b11123f151a"
 prometheus_binary_local_dir: ""
+_prometheus_binary_install_dir: "/usr/local/bin"
 prometheus_skip_install: false
 
-prometheus_config_dir: /etc/prometheus
-prometheus_db_dir: /var/lib/prometheus
+prometheus_config_dir: /etc/prometheus/
+prometheus_db_dir: /var/lib/prometheus/
 
 prometheus_web_listen_address: "0.0.0.0:9090"
 prometheus_web_external_url: ""
