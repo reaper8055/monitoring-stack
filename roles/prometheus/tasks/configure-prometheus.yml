@@ -1,7 +1,6 @@
 # configure prometheus
 ---
 - name: configure prometheus
-  become: true
   template:
     src: "{{ prometheus_config_file }}"
     dest: "{{ prometheus_config_dir }}/prometheus.yml"
