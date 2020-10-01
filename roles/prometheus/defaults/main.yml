@@ -37,6 +37,17 @@ prometheus_config_file: "prometheus-config.yml.j2"
 #     milton-pc: "10.0.0.249:9182",
 #   }
 
+prometheus_targets:
+  - "192.168.23.12:9182"
+  - "192.168.23.31:9182"
+  - "192.168.23.11:9182"
+  - "192.168.23.48:9182"
+  - "192.168.23.33:9182"
+  - "192.168.23.49:9182"
+  - "192.168.23.50:9182"
+  - "192.168.23.16:9182"
+  - "10.0.0.249:9182"
+
 prometheus_scrape_configs:
   - job_name: "prometheus"
     metrics_path: "{{ prometheus_metrics_path }}"
