@@ -1,14 +1,12 @@
 # configure prometheus
 ---
 - name: create prometheus system group
-  become: true
   group:
     name: prometheus
     system: true
     state: present
 
 - name: create prometheus system user
-  become: true
   user:
     name: prometheus
     system: true
@@ -18,7 +16,6 @@
     home: "{{ prometheus_db_dir }}"
 
 - name: create prometheus configuration directories
-  become: true
   file:
     path: "{{ item }}"
     state: directory
@@ -30,7 +27,6 @@
     - "{{ prometheus_config_dir }}/file_sd"
 
 - name: create /var/lib/prometheus directory
-  become: true
   file:
     path: "{{ prometheus_db_dir }}"
     state: directory
@@ -63,7 +59,6 @@
       check_mode: false
 
     - name: copy official prometheus and promtool binaries
-      become: true
       copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}"
         dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
@@ -77,7 +72,6 @@
         - "enable and start prometheus"
 
     - name: copy official console templates
-      become: true
       copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}/"
         dest: "{{ prometheus_config_dir }}/{{ item }}/"
@@ -94,7 +88,6 @@
     - not prometheus_skip_install
 
 - name: copy locally distributed prometheus and promtool binaries
-  become: true
   copy:
     src: "{{ prometheus_binary_local_dir }}/{{ item }}"
     dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
@@ -111,7 +104,6 @@
     - "enable and start prometheus"
 
 - name: create systemd service unit
-  become: true
   template:
     src: prometheus.service.j2
     dest: /etc/systemd/system/prometheus.service
@@ -122,7 +114,6 @@
     - "enable and start prometheus"
 
 - name: Install SELinux dependencies
-  become: true
   package:
     name: "{{ item }}"
     state: present

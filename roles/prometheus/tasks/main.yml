@@ -1,5 +1,9 @@
 ---
 - include: update-system.yml
+  become: true
 - include: install-packages.yml
+  become: true
 - include: install-prometheus.yml
+  become: true
 - include: configure-prometheus.yml
+  become: true

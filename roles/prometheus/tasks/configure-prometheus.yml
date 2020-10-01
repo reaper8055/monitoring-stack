@@ -1,5 +1,5 @@
----
 # configure prometheus
+---
 - name: configure prometheus
   become: true
   template:
