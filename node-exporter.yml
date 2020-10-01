@@ -1,5 +1,8 @@
 ---
 - name: setting up monitoring stack
-  hosts: test_env
+  hosts:
+    - prometheus
+    - grafana
+    - alertmanager
   roles:
     - node-exporter

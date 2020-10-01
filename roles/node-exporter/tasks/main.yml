@@ -1,2 +1,4 @@
 ---
 # tasks file for roles/node-exporter
+- include: install-node-exporter.yml
+  become: true
