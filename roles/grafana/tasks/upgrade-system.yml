@@ -1,0 +1,6 @@
+---
+- name: apt dist upgrade
+  apt:
+    dist_upgrade: true
+  register: _apt_dist_upgrade
+  until: _apt_dist_upgrade is succeeded

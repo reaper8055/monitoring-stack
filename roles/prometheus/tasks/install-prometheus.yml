@@ -40,7 +40,7 @@
       get_url:
         url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}.tar.gz"
         dest: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}.tar.gz"
-        checksum: "sha256:{{ __prometheus_checksum }}"
+        checksum: "sha256:{{ prometheus_checksum }}"
       register: _download_archive
       until: _download_archive is succeeded
       retries: 5
@@ -61,7 +61,7 @@
     - name: copy official prometheus and promtool binaries
       copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}"
-        dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
+        dest: "{{ prometheus_binary_install_dir }}/{{ item }}"
         mode: 0770
         owner: prometheus
         group: prometheus
@@ -90,7 +90,7 @@
 - name: copy locally distributed prometheus and promtool binaries
   copy:
     src: "{{ prometheus_binary_local_dir }}/{{ item }}"
-    dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
+    dest: "{{ prometheus_binary_install_dir }}/{{ item }}"
     mode: 0755
     owner: prometheus
     group: prometheus

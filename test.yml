@@ -2,4 +2,4 @@
 - name: setting up monitoring stack
   hosts: test_env
   roles:
-    - node-exporter
+    - grafana

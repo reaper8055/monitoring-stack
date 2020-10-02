@@ -18,7 +18,7 @@
   get_url:
     url: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}.tar.gz"
     dest: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch}}.tar.gz"
-    checksum: "sha256:{{ __node_exporter_checksum }}"
+    checksum: "sha256:{{ node_exporter_checksum }}"
   register: _download_archive
   until: _download_archive is succeeded
   retries: 5
@@ -39,7 +39,7 @@
 - name: copy node_exporter binaries
   copy:
     src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch}}/{{ item }}"
-    dest: "{{ _node_exporter_binary_install_dir }}/{{ item }}"
+    dest: "{{ node_exporter_binary_install_dir }}/{{ item }}"
     mode: 0770
     owner: node_exporter
     group: node_exporter

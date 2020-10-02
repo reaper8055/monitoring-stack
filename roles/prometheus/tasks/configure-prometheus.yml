@@ -8,6 +8,6 @@
     owner: prometheus
     group: prometheus
     mode: 0660
-    validate: "{{ _prometheus_binary_install_dir }}/promtool check config %s"
+    validate: "{{ prometheus_binary_install_dir }}/promtool check config %s"
   notify:
     - "enable and start prometheus"
