@@ -1,0 +1,12 @@
+---
+- include: update-cache.yml
+  become: true
+
+- include: upgrade-system.yml
+  become: true
+
+- include: install-grafana.yml
+  become: true
+
+- include: grafana-datasource.yml
+  become: true

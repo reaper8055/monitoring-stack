@@ -1,7 +1,7 @@
 - name: Create/Update datasources file (provisioning)
   become: true
   copy:
-    dest: "/etc/grafana/provisioning/datasources/ansible.yml"
+    dest: "/etc/grafana/provisioning/datasources/default.yml"
     content: |
       apiVersion: 1
       deleteDatasources: []
@@ -11,5 +11,5 @@
     owner: grafana
     group: grafana
     mode: 0640
-  notify: restart grafana
+  notify: "enable and start grafana"
   when: grafana_use_provisioning

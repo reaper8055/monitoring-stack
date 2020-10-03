@@ -1,6 +1,5 @@
 ---
 # defaults file for roles/grafana
----
 grafana_version: latest
 grafana_manage_repo: true
 
@@ -220,7 +219,11 @@ grafana_alert_notifications: []
 #      addresses: "example@example.com"
 
 # Datasources to configure
-grafana_datasources: []
+prometheus_url: "http://192.168.122.96:9090"
+grafana_datasources:
+  - name: "Prometheus"
+    type: "prometheus"
+    url: "{{ prometheus_url }}"
 #  - name: "Prometheus"
 #    type: "prometheus"
 #    access: "proxy"

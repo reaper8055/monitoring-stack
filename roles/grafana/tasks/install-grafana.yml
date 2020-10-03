@@ -15,7 +15,7 @@
 
 - name: install grafana
   apt:
-  pkg:
-    - grafana
+    pkg:
+      - grafana
   notify:
     - "enable and start grafana"

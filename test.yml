@@ -3,3 +3,4 @@
   hosts: test_env
   roles:
     - grafana
+    - prometheus
