@@ -1,0 +1,15 @@
+---
+# defaults file for roles/nginx-reverse-proxy
+
+# default vars for nginx
+nginx_config_file: "/etc/nginx/nginx.conf"
+server_name: "_"
+nginx_config_dir: "/etc/nginx/conf.d"
+
+# default vars for grafana
+grafana_server: "http://localhost:3000"
+nginx_grafana_config_file: "grafana.conf.j2"
+
+# default vars for prometheus
+prometheus_server: "http://localhost:9090"
+nginx_prometheus_config_file: "prometheus.conf.j2"

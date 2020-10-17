@@ -1,0 +1,10 @@
+---
+- name: configure grafana
+  template:
+    src: "{{ grafana_config_file }}"
+    dest: "{{ grafana_config_dir }}/grafana.ini"
+    force: true
+    owner: grafana
+    group: grafana
+  notify:
+    - "enable and start grafana"

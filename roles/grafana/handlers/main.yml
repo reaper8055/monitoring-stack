@@ -4,18 +4,10 @@
   systemd:
     name: grafana-server
     enabled: yes
-  become: yes
-
-- name: start grafana
-  listen: "enable and start grafana"
-  systemd:
-    name: grafana-server
     state: started
-  become: yes
 
 - name: reload grafana
   listen: "enable and start grafana"
   systemd:
     name: grafana-server
     state: restarted
-  become: yes

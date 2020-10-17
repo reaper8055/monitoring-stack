@@ -9,4 +9,4 @@
 
 [test_env]
 #10.0.0.248 ansible_connection=ssh ansible_user=test
-#192.168.122.96 ansible_connection=ssh ansible_user=neon
+#172.168.122.155 ansible_connection=ssh ansible_user=test

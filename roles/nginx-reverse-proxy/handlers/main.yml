@@ -1,0 +1,13 @@
+---
+# handlers file for roles/nginx-reverse-proxy
+- name: enable and start nginx service
+  listen: "enable and start nginx service"
+  systemd:
+    name: nginx
+    enabled: yes
+
+- name: restart nginx
+  listen: "restart nginx"
+  systemd:
+    name: nginx
+    state: retarted

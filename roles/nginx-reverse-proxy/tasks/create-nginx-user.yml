@@ -1,0 +1,14 @@
+---
+- name: create nginx system group
+  group:
+    name: nginx
+    system: true
+    state: present
+
+- name: create nginx system user
+  user:
+    name: nginx
+    system: true
+    shell: "/usr/sbin/nologin"
+    group: nginx
+    createhome: false

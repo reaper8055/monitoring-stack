@@ -1,0 +1,10 @@
+---
+# tasks file for roles/nginx-reverse-proxy
+- include: update-and-upgrade.yml
+  become: yes
+
+- include: install-nginx.yml
+  become: yes
+
+- include: configure-nginx.yml
+  become: yes

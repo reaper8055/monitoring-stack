@@ -1,12 +1,15 @@
 ---
 - include: update-cache.yml
-  become: true
+  become: yes
 
 - include: upgrade-system.yml
-  become: true
+  become: yes
 
 - include: install-grafana.yml
-  become: true
+  become: yes
+
+- include: configure-grafana.yml
+  become: yes
 
 - include: grafana-datasource.yml
-  become: true
+  become: yes
