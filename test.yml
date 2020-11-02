@@ -1,7 +1,5 @@
 ---
 - name: setting up monitoring stack
-  hosts: test_env
+  hosts: test
   roles:
     - grafana
-    - prometheus
-    - nginx-reverse-proxy

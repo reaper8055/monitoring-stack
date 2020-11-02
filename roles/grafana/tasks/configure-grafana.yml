@@ -1,4 +1,19 @@
 ---
+- name: Ensure grafana configuration directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: grafana
+  with_items:
+    - "/etc/grafana"
+    - "/etc/grafana/datasources"
+    - "/etc/grafana/provisioning"
+    - "/etc/grafana/provisioning/datasources"
+    - "/etc/grafana/provisioning/dashboards"
+    - "/etc/grafana/provisioning/notifiers"
+    - "/etc/grafana/provisioning/plugins"
+
 - name: configure grafana
   template:
     src: "{{ grafana_config_file }}"
@@ -8,3 +23,16 @@
     group: grafana
   notify:
     - "enable and start grafana"
+
+- name: Create grafana LDAP configuration file
+  template:
+    src: ldap.toml.j2
+    dest: "{{ grafana_auth.ldap.config_file | default('/etc/grafana/ldap.toml') }}"
+    owner: grafana
+    group: grafana
+    mode: 0640
+  when:
+    - "'ldap' in grafana_auth"
+    - "'enabled' not in grafana_auth.ldap or grafana_auth.ldap.enabled"
+  no_log: true
+  notify: restart grafana
