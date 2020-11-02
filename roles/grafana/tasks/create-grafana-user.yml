@@ -1,0 +1,14 @@
+---
+- name: create grafana system group
+  group:
+    name: grafana
+    system: true
+    state: present
+
+- name: create grafana system user
+  user:
+    name: grafana
+    system: true
+    shell: "/usr/sbin/nologin"
+    group: grafana
+    createhome: false

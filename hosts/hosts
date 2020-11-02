@@ -1,11 +1,12 @@
 # ansible-playbook -i hosts/host site.yml -kK
 [prometheus]
-192.168.23.119 ansible_connection=ssh ansible_user=prometheus
+10.10.10.131 ansible_connection=ssh ansible_user=prometheus
 
 [grafana]
-192.168.23.117 ansible_connection=ssh ansible_user=grafana
+10.10.10.130 ansible_connection=ssh ansible_user=grafana
 
 [alertmanager]
+10.10.10.129 ansible_connection=ssh ansible_user=alertmanager
 
 [test_env]
 #10.0.0.248 ansible_connection=ssh ansible_user=test

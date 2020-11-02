@@ -5,6 +5,9 @@
 - include: upgrade-system.yml
   become: yes
 
+- include: create-grafana-user.yml
+  become: yes
+
 - include: install-grafana.yml
   become: yes
 
